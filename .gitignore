@@ -137,3 +137,5 @@ dmypy.json
 
 # Mac/OSX
 .DS_Store
+
+pgdata/

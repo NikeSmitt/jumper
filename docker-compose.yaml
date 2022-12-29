@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:13.7
+    privileged: true
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: jumper-project
+      POSTGRES_USER: jumper
+      POSTGRES_PASSWORD: 12345
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - .:/var/lib/postgresql/data
