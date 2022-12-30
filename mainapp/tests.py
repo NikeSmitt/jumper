@@ -1,3 +1,10 @@
 from django.test import TestCase
 
-# Create your tests here.
+from mainapp.models import ShoeProduct
+
+
+class TestMainappProducts(TestCase):
+    
+    def testCreatingShoeProduct(self):
+        shoe = ShoeProduct()
+        
