@@ -12,7 +12,7 @@ from mainapp.models.choices import GENDERS_CHOICES
 class Product(models.Model):
     """Непосредственно товар"""
     
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
+    category = models.ManyToManyField(Category, related_name='products', blank=True)
     
     name = models.CharField(max_length=200, verbose_name='Название товара', db_index=True)
     # code = models.

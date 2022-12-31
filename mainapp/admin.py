@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.admin import TabularInline
 from django.contrib.contenttypes.admin import GenericTabularInline
+from django.db import models
+from django.forms import CheckboxSelectMultiple
 from django.utils.safestring import mark_safe
 
 from mainapp.models.brand import Brand
@@ -30,6 +32,9 @@ class SizeInline(TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = (SizeInline, ProductImageInline, )
     list_display = ['id', 'name', 'image_tag']
+    # formfield_overrides = {
+    #     models.ManyToManyField: {'widget': CheckboxSelectMultiple}
+    # }
     
     def image_tag(self, obj):
         """Получаем изображение"""

@@ -37,7 +37,7 @@ class Size(models.Model):
         null=True,
         blank=True,
     )
-    value = models.FloatField(verbose_name='Значение')
+    value = models.FloatField(verbose_name='Значение', null=True, blank=True)
     
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     modified = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')

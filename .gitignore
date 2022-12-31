@@ -139,3 +139,4 @@ dmypy.json
 .DS_Store
 
 pgdata/
+/static/sass/.sass-cache/
