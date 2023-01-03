@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -20,3 +21,6 @@ class Category(models.Model):
             parent = parent.parent
         
         return ' -> '.join(full_path[::-1])
+    
+    def get_absolute_path(self):
+        return reverse('mainapp:product_list', kwargs={'slug': self.slug})
