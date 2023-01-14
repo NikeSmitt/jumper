@@ -39,32 +39,37 @@
 </head>
 
 <body>
+<div id="app">
+    <div id="page">
 
-<div id="page">
+        {% include 'includes/header_main.html' %}
 
-    {% include 'includes/header_main.html' %}
-
-{% block content %}
-{% endblock %}
+        {% block content %}
+        {% endblock %}
 
 
-{% include 'includes/footer_main.html' %}
+        {% include 'includes/footer_main.html' %}
     </div>
     <!-- page -->
 
     <div id="toTop"></div><!-- Back to top button -->
 
-{% block content_additional %}
-{% endblock %}
+    {% block content_additional %}
+    {% endblock %}
 
 
-<!-- COMMON SCRIPTS -->
-<script src="{% static "js/common_scripts.min.js" %}"></script>
-<script src="{% static "js/main.js" %}"></script>
-	
+    <!-- COMMON SCRIPTS -->
+    <script src="{% static "js/common_scripts.min.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+{#    <script src="{% static "js/App.js" %}"></script>#}
+
+{#реализация добавления в корзину#}
+    <script src="{% static "mainapp/js/script.js" %}"></script>
+
+
     {% block specific_scripts %}
 
     {% endblock %}
-
+</div>
 </body>
 </html>

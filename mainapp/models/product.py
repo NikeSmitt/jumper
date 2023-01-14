@@ -29,8 +29,8 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     # quantity = models.PositiveIntegerField(default=0)
     manufacture = models.CharField(max_length=50, verbose_name='Производство', blank=True, null=True)
-    price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Цена', default=0.0)
-    old_price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Старая цена', default=0.0,
+    price = models.FloatField(verbose_name='Цена', default=0.0)
+    old_price = models.FloatField(verbose_name='Старая цена', default=0.0,
                                     help_text='Можно не вводить')
     discount = models.SmallIntegerField(default=0, verbose_name='Скидка')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')

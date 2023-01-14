@@ -1,0 +1,120 @@
+$(document).ready(() => {
+    // Top panel on click: add to cart, search header
+    let $topPnl = $('.top_panel');
+    let $pnlMsk = $('.layer');
+
+
+    // добавление продукта в корзину
+    $('.btn_add_to_cart a').on('click', function (event) {
+        $topPnl.addClass('show');
+        $pnlMsk.addClass('layer-is-visible');
+
+        // собираем данные для корзины
+        const productSlug = $(this).attr('data-slug')
+        const productID = $(this).attr('data-id')
+        const token = $(this).attr('data-token')
+        const product_quantity = parseInt($('#quantity_1').val())
+        console.log(product_quantity)
+
+
+        // посылаем запрос на сервер для обновления корзины
+        $.ajax({
+            type: 'POST',
+            url: '/api/add_to_cart/',
+            data: JSON.stringify({
+                id: productID,
+                quantity: product_quantity,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': token,
+            },
+            dataType: 'json',
+            success: (data) => {
+
+                // console.log('Added to cart')
+                get_cart()
+            },
+            fail: (error) => {
+                console.log(error)
+            }
+        })
+
+    });
+
+
+    // обновляем данные корзины
+
+    const get_cart = () => {
+        $.get('/api/get_cart_items/', (response) => {
+            update_cart_view(JSON.parse(response))
+        }).fail((error) => {
+            console.log(error)
+        })
+    }
+
+    const update_cart_view = (data) => {
+        let cart_total_quantity = 0
+        let cart_total_price = 0
+
+        // находим список корзины
+        let cart_list = $('#cart ul')
+
+        // очищаем
+        cart_list.empty()
+        for (const product of data) {
+            // console.log(product)
+            cart_total_quantity += parseInt(product.quantity)
+            cart_total_price += parseFloat(product.total_price)
+// console.log(product)
+            cart_list.append(
+                `<li>
+                    <a href="${product.url}">
+                        <figure><img
+                            src="${product.image}"
+                            data-src="${product.image}" alt="product image"
+                            width="50" height="50" class="lazy"></figure>
+                        <strong><span>${product.quantity}x ${product.product_name}</span>${product.price}</strong>
+                    </a>
+                    <a href="#" class="action" "><i data-id="${product.id}" class="ti-trash"></i></a>
+                </li>`
+            )
+
+            // удаление продукта из корзины
+            $("i.ti-trash").on('click', function (event) {
+                console.log('trash_pressed')
+                const productID = $(this).attr('data-id')
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/remove_cart_item/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{csrf_token}}',
+                    },
+                    data: JSON.stringify({
+                        id: productID,
+                    }),
+                    dataType: 'json',
+
+                    success: (data) => {
+                        console.log(data)
+                    },
+                    fail: (error) => {
+                        console.log(error)
+                    }
+
+
+                })
+            })
+
+        }
+        $('.cart_bt strong').text(`${cart_total_quantity}`)
+        $('.clearfix span').text(`${cart_total_price} ₽`)
+
+
+    }
+
+    get_cart()
+
+
+})

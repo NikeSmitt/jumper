@@ -10,7 +10,6 @@
 {% block content %}
 
 
-
     <main>
         <div class="container margin_30">
             {#            <div class="countdown_inner">-20% This offer ends in#}
@@ -34,15 +33,15 @@
                                 </div>
                                 <div class="slider-two">
                                 <div class="owl-carousel owl-theme thumbs">
-                                {% for image in images %}
-                                    {% if forloop.first %}
-                                    <div style="background-image: url({{ image.image.url }});"
-                                         class="item active"></div>
-                                    {% else %}
-                                    <div style="background-image: url({{ image.image.url }});"
-                                         class="item"></div>
-                                    {% endif %}
-                                {% endfor %}
+                                    {% for image in images %}
+                                        {% if forloop.first %}
+                                            <div style="background-image: url({{ image.image.url }});"
+                                                 class="item active"></div>
+                                        {% else %}
+                                            <div style="background-image: url({{ image.image.url }});"
+                                                 class="item"></div>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                                 <div class="left-t nonl-t"></div>
                                 <div class="right-t"></div>
@@ -71,17 +70,17 @@
                             tibique sed. Et wisi ridens vix, lorem iudico blandit mel cu. Ex vel sint zril oportere,
                             amet wisi aperiri te cum.</p>
                         <div class="prod_options">
-                            <div class="row">
-                                <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
-                                <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-                                    <ul>
-                                        <li><a href="#0" class="color color_1 active"></a></li>
-                                        <li><a href="#0" class="color color_2"></a></li>
-                                        <li><a href="#0" class="color color_3"></a></li>
-                                        <li><a href="#0" class="color color_4"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+{#                            <div class="row">#}
+{#                                <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>#}
+{#                                <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">#}
+{#                                    <ul>#}
+{#                                        <li><a href="#0" class="color color_1 active"></a></li>#}
+{#                                        <li><a href="#0" class="color color_2"></a></li>#}
+{#                                        <li><a href="#0" class="color color_3"></a></li>#}
+{#                                        <li><a href="#0" class="color color_4"></a></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                            </div>#}
                             <div class="row">
                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Размеры</strong> - Таблица
                                     размеров <a
@@ -114,12 +113,19 @@
                             <div class="col-lg-5 col-md-6">
                                 <div class="price_main"><span class="new_price">{{ product.price }} ₽</span>
                                     {% if product.discount %}
-                                    <span class="percentage">-{{ product.discount }}%</span>
-                                    <span class="old_price">{{ product.old_price }} ₽</span></div>
-                                {% endif %}
+                                        <span class="percentage">-{{ product.discount }}%</span>
+                                        <span class="old_price">{{ product.old_price }} ₽</span>
+                                    {% endif %}
+                                </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
+                                <div class="btn_add_to_cart"><a
+                                        data-name="{{ product.name }}"
+                                        data-price="{{ product.price }}"
+                                        data-id="{{ product.id }}"
+                                        data-slug="{{ product.slug }}"
+                                        data-token="{{ csrf_token }}"
+                                        href="#" class="btn_1">Add to Cart</a></div>
                             </div>
                         </div>
                     </div>
@@ -686,5 +692,7 @@
 
     <!-- SPECIFIC SCRIPTS -->
     <script src="{% static "js/carousel_with_thumbs.js" %}"></script>
+
+
 {% endblock %}
 
