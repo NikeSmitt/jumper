@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
     <title>Allaia | Bootstrap eCommerce Template - ThemeForest</title>
-
+    
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
@@ -26,7 +26,7 @@
     <link href="css/style.css" rel="stylesheet">
 
 	<!-- SPECIFIC CSS -->
-    <link href="css/checkout.css" rel="stylesheet">
+    <link href="css/account.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
@@ -36,7 +36,7 @@
 <body>
 	
 	<div id="page">
-		
+	
 	<header class="version_1">
 		<div class="layer"></div><!-- Mobile menu overlay mask -->
 		<div class="main_header">
@@ -324,7 +324,6 @@
 	<!-- /header -->
 	
 	<main class="bg_gray">
-	
 		
 	<div class="container margin_30">
 		<div class="page_header">
@@ -336,233 +335,207 @@
 				</ul>
 		</div>
 		<h1>Sign In or Create an Account</h1>
-			
 	</div>
 	<!-- /page_header -->
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="step first">
-						<h3>1. User Info and Billing address</h3>
-					<ul class="nav nav-tabs" id="tab_checkout" role="tablist">
-					  <li class="nav-item">
-						<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#tab_1" role="tab" aria-controls="tab_1" aria-selected="true">Register</a>
-					  </li>
-					  <li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#tab_2" role="tab" aria-controls="tab_2" aria-selected="false">Login</a>
-					  </li>
-					</ul>
-					<div class="tab-content checkout">
-						<div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
-							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email">
+			<div class="row justify-content-center">
+			<div class="col-xl-6 col-lg-6 col-md-8">
+				<div class="box_account">
+					<h3 class="client">Already Client</h3>
+					<div class="form_container">
+						<div class="row no-gutters">
+							<div class="col-lg-6 pr-lg-1">
+								<a href="#0" class="social_bt facebook">Login with Facebook</a>
 							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password">
+							<div class="col-lg-6 pl-lg-1">
+								<a href="#0" class="social_bt google">Login with Google</a>
 							</div>
-							<hr>
-							<div class="row no-gutters">
-								<div class="col-6 form-group pr-1">
-									<input type="text" class="form-control" placeholder="Name">
-								</div>
-								<div class="col-6 form-group pl-1">
-									<input type="text" class="form-control" placeholder="Last Name">
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Full Address">
-							</div>
-							<div class="row no-gutters">
-								<div class="col-6 form-group pr-1">
-									<input type="text" class="form-control" placeholder="City">
-								</div>
-								<div class="col-6 form-group pl-1">
-									<input type="text" class="form-control" placeholder="Postal code">
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="row no-gutters">
-								<div class="col-md-12 form-group">
-									<div class="custom-select-form">
-										<select class="wide add_bottom_15" name="country" id="country">
-											<option value="" selected>Country</option>
-											<option value="Europe">Europe</option>
-											<option value="United states">United states</option>
-											<option value="Asia">Asia</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Telephone">
-							</div>
-							<hr>
-							<div class="form-group">
-								<label class="container_check" id="other_addr">Other billing address
-								  <input type="checkbox">
-								  <span class="checkmark"></span>
-								</label>
-							</div>
-							<div id="other_addr_c" class="pt-2">
-							<div class="row no-gutters">
-								<div class="col-6 form-group pr-1">
-									<input type="text" class="form-control" placeholder="Name">
-								</div>
-								<div class="col-6 form-group pl-1">
-									<input type="text" class="form-control" placeholder="Last Name">
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Full Address">
-							</div>
-							<div class="row no-gutters">
-								<div class="col-6 form-group pr-1">
-									<input type="text" class="form-control" placeholder="City">
-								</div>
-								<div class="col-6 form-group pl-1">
-									<input type="text" class="form-control" placeholder="Postal code">
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="row no-gutters">
-								<div class="col-md-12 form-group">
-									<div class="custom-select-form">
-										<select class="wide add_bottom_15" name="country" id="country_2">
-											<option value="" selected>Country</option>
-											<option value="Europe">Europe</option>
-											<option value="United states">United states</option>
-											<option value="Asia">Asia</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- /row -->
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Telephone">
-							</div>
-							</div>
-							<!-- /other_addr_c -->
-							<hr>
 						</div>
-						<!-- /tab_1 -->
-					  <div class="tab-pane fade" id="tab_2" role="tabpanel" aria-labelledby="tab_2" style="position: relative;">
-						  <a href="#0" class="social_bt facebook">Login con Facebook</a>
-						  <a href="#0" class="social_bt google">Login con Google</a>
-						  <div class="form-group">
-								<input type="email" class="form-control" placeholder="Email">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password" name="password_in" id="password_in">
-							</div>
-						  	<div class="clearfix add_bottom_15">
-								<div class="checkboxes float-start">
-									<label class="container_check">Remember me
-										<input type="checkbox">
-										<span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="float-end"><a id="forgot" href="#0">Lost Password?</a></div>
-							</div>
-							  <div id="forgot_pw">
-								<div class="form-group">
-									<input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
-								</div>
-								<p>A new password will be sent shortly.</p>
-								<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-							</div>
-							<hr>
-						  	<input type="submit" class="btn_1 full-width" value="Login">
-						</div>
-						<!-- /tab_2 -->
-					</div>
-					</div>
-					<!-- /step -->
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="step middle payments">
-						<h3>2. Payment and Shipping</h3>
-							<ul>
-								<li>
-									<label class="container_radio">Credit Card<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="payment" checked>
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								<li>
-									<label class="container_radio">Paypal<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="payment">
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								<li>
-									<label class="container_radio">Cash on delivery<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="payment">
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								<li>
-									<label class="container_radio">Bank Transfer<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="payment">
-										<span class="checkmark"></span>
-									</label>
-								</li>
-							</ul>
-							<div class="payment_info d-none d-sm-block"><figure><img src="img/cards_all.svg" alt=""></figure>	<p>Sensibus reformidans interpretaris sit ne, nec errem nostrum et, te nec meliore philosophia. At vix quidam periculis. Solet tritani ad pri, no iisque definitiones sea.</p></div>
-							
-							<h6 class="pb-2">Shipping Method</h6>
-							
-						
-						<ul>
-								<li>
-									<label class="container_radio">Standard shipping<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="shipping" checked>
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								<li>
-									<label class="container_radio">Express shipping<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
-										<input type="radio" name="shipping">
-										<span class="checkmark"></span>
-									</label>
-								</li>
-								
-							</ul>
-						
-					</div>
-					<!-- /step -->
-					
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="step last">
-						<h3>3. Order Summary</h3>
-					<div class="box_general summary">
-						<ul>
-							<li class="clearfix"><em>1x Armor Air X Fear</em>  <span>$145.00</span></li>
-							<li class="clearfix"><em>2x Armor Air Zoom Alpha</em> <span>$115.00</span></li>
-						</ul>
-						<ul>
-							<li class="clearfix"><em><strong>Subtotal</strong></em>  <span>$450.00</span></li>
-							<li class="clearfix"><em><strong>Shipping</strong></em> <span>$0</span></li>
-							
-						</ul>
-						<div class="total clearfix">TOTAL <span>$450.00</span></div>
+						<div class="divider"><span>Or</span></div>
 						<div class="form-group">
-								<label class="container_check">Register to the Newsletter.
-								  <input type="checkbox" checked>
-								  <span class="checkmark"></span>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Email*">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="password_in" id="password_in" value="" placeholder="Password*">
+						</div>
+						<div class="clearfix add_bottom_15">
+							<div class="checkboxes float-start">
+								<label class="container_check">Remember me
+									<input type="checkbox">
+									<span class="checkmark"></span>
 								</label>
 							</div>
-						
-						<a href="confirm.html" class="btn_1 full-width">Confirm and Pay</a>
+							<div class="float-end"><a id="forgot" href="javascript:void(0);">Lost Password?</a></div>
+						</div>
+						<div class="text-center"><input type="submit" value="Log In" class="btn_1 full-width"></div>
+						<div id="forgot_pw">
+							<div class="form-group">
+								<input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
+							</div>
+							<p>A new password will be sent shortly.</p>
+							<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+						</div>
 					</div>
-					<!-- /box_general -->
-					</div>
-					<!-- /step -->
+					<!-- /form_container -->
 				</div>
+				<!-- /box_account -->
+				<div class="row">
+					<div class="col-md-6 d-none d-lg-block">
+						<ul class="list_ok">
+							<li>Find Locations</li>
+							<li>Quality Location check</li>
+							<li>Data Protection</li>
+						</ul>
+					</div>
+					<div class="col-md-6 d-none d-lg-block">
+						<ul class="list_ok">
+							<li>Secure Payments</li>
+							<li>H24 Support</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
 			</div>
-			<!-- /row -->
+			<div class="col-xl-6 col-lg-6 col-md-8">
+				<div class="box_account">
+					<h3 class="new_client">New Client</h3> <small class="float-right pt-2">* Required Fields</small>
+					<div class="form_container">
+						<div class="form-group">
+							<input type="email" class="form-control" name="email" id="email_2" placeholder="Email*">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="password_in_2" id="password_in_2" value="" placeholder="Password*">
+						</div>
+						<hr>
+						<div class="form-group">
+							<label class="container_radio" style="display: inline-block; margin-right: 15px;">Private
+								<input type="radio" name="client_type" checked value="private">
+								<span class="checkmark"></span>
+							</label>
+							<label class="container_radio" style="display: inline-block;">Company
+								<input type="radio" name="client_type" value="company">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="private box">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Name*">
+									</div>
+								</div>
+								<div class="col-6 pl-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Last Name*">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Full Address*">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="City*">
+									</div>
+								</div>
+								<div class="col-6 pl-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Postal Code*">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<div class="form-group">
+										<div class="custom-select-form">
+											<select class="wide add_bottom_10" name="country" id="country">
+													<option value="" selected>Country*</option>
+													<option value="Europe">Europe</option>
+													<option value="United states">United states</option>
+													<option value="Asia">Asia</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-6 pl-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Telephone *">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							
+						</div>
+						<!-- /private -->
+						<div class="company box" style="display: none;">
+							<div class="row no-gutters">
+								<div class="col-12">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Company Name*">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Full Address">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="City*">
+									</div>
+								</div>
+								<div class="col-6 pl-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Postal Code*">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<div class="form-group">
+										<div class="custom-select-form">
+											<select class="wide add_bottom_10" name="country" id="country_2">
+													<option value="" selected>Country*</option>
+													<option value="Europe">Europe</option>
+													<option value="United states">United states</option>
+													<option value="Asia">Asia</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-6 pl-1">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Telephone *">
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+						</div>
+						<!-- /company -->
+						<hr>
+						<div class="form-group">
+							<label class="container_check">Accept <a href="#0">Terms and conditions</a>
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</div>
+						<div class="text-center"><input type="submit" value="Register" class="btn_1 full-width"></div>
+					</div>
+					<!-- /form_container -->
+				</div>
+				<!-- /box_account -->
+			</div>
+		</div>
+		<!-- /row -->
 		</div>
 		<!-- /container -->
 	</main>
@@ -669,34 +642,19 @@
 	<!-- page -->
 	
 	<div id="toTop"></div><!-- Back to top button -->
-	<!-- Modal Payments Method-->
-	<div class="modal fade" id="payments_method" tabindex="-1" role="dialog" aria-labelledby="payments_method_title" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="payments_method_title">Payments Methods</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		  </div>
-		  <div class="modal-body">
-			<p>Lorem ipsum dolor sit amet, oratio possim ius cu. Labore prompta nominavi sea ei. Sea no animal saperet gloriatur, ius iusto ullamcorper ad. Qui ignota reformidans ei, vix in elit conceptam adipiscing, quaestio repudiandae delicatissimi vis ei. Fabulas accusamus no has.</p>
-			 <p>Et nam vidit zril, pri elaboraret suscipiantur ut. Duo mucius gloriatur at, in vis integre labitur dolores, mei omnis utinam labitur id. An eum prodesset appellantur. Ut alia nemore mei, at velit veniam vix, nonumy propriae conclusionemque ea cum.</p>
-		  </div>
-		</div>
-	  </div>
-	</div>
 	
 	<!-- COMMON SCRIPTS -->
     <script src="js/common_scripts.min.js"></script>
     <script src="js/main.js"></script>
 
     <script>
-    	// Other address Panel
-		$('#other_addr input').on("change", function (){
-	        if(this.checked)
-	            $('#other_addr_c').fadeIn('fast');
-	        else
-	            $('#other_addr_c').fadeOut('fast');
-	    });
+    	// Client type Panel
+		$('input[name="client_type"]').on("click", function() {
+		    var inputValue = $(this).attr("value");
+		    var targetBox = $("." + inputValue);
+		    $(".box").not(targetBox).hide();
+		    $(targetBox).show();
+		});
 	</script>
 		
 </body>

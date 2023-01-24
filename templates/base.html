@@ -61,9 +61,12 @@
     <!-- COMMON SCRIPTS -->
     <script src="{% static "js/common_scripts.min.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
-{#    <script src="{% static "js/App.js" %}"></script>#}
+    <script>
+        const csrfToken = '{{ csrf_token }}';
+    </script>
+    {#    <script src="{% static "js/App.js" %}"></script>#}
 
-{#реализация добавления в корзину#}
+    {#реализация добавления в корзину#}
     <script src="{% static "mainapp/js/script.js" %}"></script>
 
 

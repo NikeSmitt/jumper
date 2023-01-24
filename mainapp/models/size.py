@@ -43,7 +43,7 @@ class Size(models.Model):
     modified = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     
     def __str__(self):
-        return f'{self.value} - {self.product.name}'
+        return f'{self.value}'
     
     class Meta:
         constraints = [

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block specific_css %}
+    <!-- SPECIFIC CSS -->
+    <link href="{% static 'css/checkout.css' %}" rel="stylesheet">
+{% endblock %}
+
+<body>
+
+
+{% block content %}
+
+    <main class="bg_gray">
+
+
+        <div class="container margin_30">
+            <div class="page_header">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Домой</a></li>
+                        <li><a href="{% url 'cartapp:cart' %}">Корзина</a></li>
+                        <li>Оформление заказа</li>
+                    </ul>
+                </div>
+                <h1>Быстрый заказ</h1>
+
+            </div>
+            <!-- /page_header -->
+            <form method="post" class="row" action="{% url 'orderapp:checkout' %}">
+                {% csrf_token %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="step first">
+                        <h3>1. Оформление заказа</h3>
+
+                        <div class="tab-content checkout">
+                            <div class="tab-pane fade show active" id="tab_1" role="tabpanel"
+                                 aria-labelledby="tab_1">
+
+                                {% if form.errors %}
+                                    <div class="total clearfix">Пожалуйста исправьте следующие ошибки</div>
+                                {% endif %}
+                                <div class="form-group">
+                                    {{ form.phone.errors }}
+                                    {{ form.phone }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form.email.errors }}
+                                    {{ form.email }}
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-6 form-group pr-1">
+                                        {{ form.first_name.errors }}
+                                        {{ form.first_name }}
+                                    </div>
+                                    <div class="col-6 form-group pl-1">
+                                        {{ form.last_name.errors }}
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                                <!-- /row -->
+                                <div class="form-group">
+                                    {{ form.address.errors }}
+                                    {{ form.address}}
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-6 form-group pr-1">
+                                        {{ form.city.errors }}
+                                        {{ form.city }}
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /step -->
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="step last">
+                        <h3>2. Детали заказа</h3>
+                        <div class="box_general summary">
+                            <ul>
+                                {% for item in cart %}
+                                <li class="clearfix"><em>{{ item.quantity }}x {{ item.product_name }} ({{ item.size }})</em> <span>{{ item.total_price|floatformat:0 }} ₽</span></li>
+                                {% endfor %}
+                            </ul>
+                            <ul>
+                                <li class="clearfix"><em><strong>Стоимость</strong></em> <span>{{ cart.get_total|floatformat:0 }} ₽</span></li>
+                                <li class="clearfix"><em><strong>Доставка</strong></em> <span>0</span></li>
+
+                            </ul>
+                            <div class="total clearfix">Итого: <span>{{ cart.get_total|floatformat:0}} ₽</span></div>
+{#                            <div class="form-group">#}
+{#                                <label class="container_check">Register to the Newsletter.#}
+{#                                    <input type="checkbox" checked>#}
+{#                                    <span class="checkmark"></span>#}
+{#                                </label>#}
+{#                            </div>#}
+
+                            <button type="submit" class="btn_1 full-width">Оформить</button>
+                        </div>
+                        <!-- /box_general -->
+                    </div>
+                    <!-- /step -->
+                </div>
+            </form>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </main>
+    <!--/main-->
+
+{% endblock %}
+
+
+{% block content_additional %}
+    <!-- Modal Payments Method-->
+    <div class="modal fade" id="payments_method" tabindex="-1" role="dialog" aria-labelledby="payments_method_title"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="payments_method_title">Payments Methods</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, oratio possim ius cu. Labore prompta nominavi sea ei. Sea no animal
+                        saperet gloriatur, ius iusto ullamcorper ad. Qui ignota reformidans ei, vix in elit conceptam
+                        adipiscing, quaestio repudiandae delicatissimi vis ei. Fabulas accusamus no has.</p>
+                    <p>Et nam vidit zril, pri elaboraret suscipiantur ut. Duo mucius gloriatur at, in vis integre
+                        labitur
+                        dolores, mei omnis utinam labitur id. An eum prodesset appellantur. Ut alia nemore mei, at velit
+                        veniam vix, nonumy propriae conclusionemque ea cum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block specific_scripts %}
+    <script>
+        // Other address Panel
+        $('#other_addr input').on("change", function () {
+            if (this.checked)
+                $('#other_addr_c').fadeIn('fast');
+            else
+                $('#other_addr_c').fadeOut('fast');
+        });
+    </script>
+
+{% endblock %}

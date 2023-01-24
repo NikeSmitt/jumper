@@ -11,6 +11,7 @@ from mainapp.models.color import Color
 from mainapp.models.product import Product
 from mainapp.models.product_image import ProductImage
 from mainapp.models.size import Size
+from mainapp.models.tag import Tag
 
 
 @admin.register(Category)
@@ -28,13 +29,15 @@ class SizeInline(TabularInline):
     model = Size
 
 
+# class TagInline(GenericTabularInline):
+#     extra = 1
+#     model = Tag
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (SizeInline, ProductImageInline, )
+    inlines = (SizeInline, ProductImageInline,)
     list_display = ['id', 'name', 'image_tag']
-    # formfield_overrides = {
-    #     models.ManyToManyField: {'widget': CheckboxSelectMultiple}
-    # }
     
     def image_tag(self, obj):
         """Получаем изображение"""
@@ -62,4 +65,7 @@ class ColorAdmin(admin.ModelAdmin):
 
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['value', 'label_clothes', 'product', 'quantity']
+
+
+admin.site.register(Tag)

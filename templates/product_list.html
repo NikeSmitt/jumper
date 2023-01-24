@@ -21,7 +21,11 @@
                             <li>{{ category.name }}</li>
                         </ul>
                     </div>
-                    <h1>{{ category.name|upper }} - Что-то тут</h1>
+                    {% if category %}
+                    <h1>{{ category.name|upper }}</h1>
+                    {% elif tag %}
+                        <h1>{{ tag.title|upper }}</h1>
+                    {% endif %}
                 </div>
             </div>
             <img src="img/bg_cat_shoes.jpg" class="img-fluid" alt="">

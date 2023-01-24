@@ -12,9 +12,10 @@ $(document).ready(() => {
         // собираем данные для корзины
         const productSlug = $(this).attr('data-slug')
         const productID = $(this).attr('data-id')
-        const token = $(this).attr('data-token')
         const product_quantity = parseInt($('#quantity_1').val())
-        console.log(product_quantity)
+        const size_id = $('#size_select_id').val()
+        // console.log(`Selected size id: ${size_id}`)
+        // console.log(product_quantity)
 
 
         // посылаем запрос на сервер для обновления корзины
@@ -24,15 +25,16 @@ $(document).ready(() => {
             data: JSON.stringify({
                 id: productID,
                 quantity: product_quantity,
+                size_id: size_id,
             }),
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': token,
+                'X-CSRFToken': csrfToken,
             },
             dataType: 'json',
             success: (data) => {
 
-                // console.log('Added to cart')
+                $('#quantity_on_top_popup').text(product_quantity)
                 get_cart()
             },
             fail: (error) => {
@@ -63,10 +65,8 @@ $(document).ready(() => {
         // очищаем
         cart_list.empty()
         for (const product of data) {
-            // console.log(product)
             cart_total_quantity += parseInt(product.quantity)
             cart_total_price += parseFloat(product.total_price)
-// console.log(product)
             cart_list.append(
                 `<li>
                     <a href="${product.url}">
@@ -82,14 +82,13 @@ $(document).ready(() => {
 
             // удаление продукта из корзины
             $("i.ti-trash").on('click', function (event) {
-                console.log('trash_pressed')
                 const productID = $(this).attr('data-id')
                 $.ajax({
                     type: 'POST',
                     url: '/api/remove_cart_item/',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{csrf_token}}',
+                        'X-CSRFToken': csrfToken,
                     },
                     data: JSON.stringify({
                         id: productID,
@@ -97,7 +96,10 @@ $(document).ready(() => {
                     dataType: 'json',
 
                     success: (data) => {
-                        console.log(data)
+                        $(`#row-item-${productID}`).remove()
+                        $('#subtotal-price').html(`<span>Цена</span> ${data.subtotal} ₽`)
+                        // $('#total-price').html(`<span>Итого</span> ${data.total} ₽`)
+                        get_cart()
                     },
                     fail: (error) => {
                         console.log(error)
@@ -109,11 +111,12 @@ $(document).ready(() => {
 
         }
         $('.cart_bt strong').text(`${cart_total_quantity}`)
-        $('.clearfix span').text(`${cart_total_price} ₽`)
+        $('#cart-header-total').text(`${cart_total_price} ₽`)
+        $('#cart-header-total').text(`${cart_total_price} ₽`)
 
 
     }
-
+    // console.log(csrfToken)
     get_cart()
 
 

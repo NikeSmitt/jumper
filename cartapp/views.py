@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 from django.views import View
 
@@ -10,12 +11,9 @@ class CartView(View):
     
     def get(self, request):
         context = {}
-        if not request.user.is_authenticated:
-            c = Cart(request)
-            cart_items = list(c.cart.values())
-            print(cart_items)
-            context = {
-                'cart_items': cart_items,
-            }
+        cart_items = Cart(request)
+        context = {
+            'cart_items': cart_items,
+        }
         
         return render(request, self.template_name, context=context)
