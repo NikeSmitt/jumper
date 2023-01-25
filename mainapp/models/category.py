@@ -7,6 +7,12 @@ class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='название категории')
     slug = models.SlugField()
     parent = models.ForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.SET_NULL)
+    head_image = models.ImageField(
+        upload_to='categories',
+        verbose_name='Изображение в заголовке при выборе категории',
+        help_text='Размер 1350х550',
+        default='cat_head_image_default.jpeg'
+    )
     
     class Meta:
         unique_together = ('slug', 'parent')

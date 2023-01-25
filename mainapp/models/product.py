@@ -16,7 +16,13 @@ from mainapp.models.tag import Tag
 class Product(models.Model):
     """Непосредственно товар"""
     
-    category = models.ForeignKey(Category, related_name='products', blank=True, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category,
+        related_name='products',
+        blank=True,
+        on_delete=models.SET_NULL,
+        null=True
+    )
     
     name = models.CharField(max_length=200, verbose_name='Название товара', db_index=True)
     code = models.CharField(max_length=30, verbose_name='Артикул', db_index=True, null=True, blank=True)

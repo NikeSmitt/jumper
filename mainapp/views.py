@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import View
@@ -35,14 +36,20 @@ class ProductListView(View):
     def get(self, request, slug):
         products = []
         category = Category.objects.get(slug=slug)
-        products.extend(list(category.products.all()))
+        for sub_category in category.children.all():
+            products.extend(list(sub_category.products.all()))
+        
+        paginator = Paginator(products, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         
         for subcategory in category.children.all():
             products.extend(list(subcategory.products.all()))
         
         context = {
             'category': category,
-            'products': products
+            'products': products,
+            'page_obj': page_obj,
         }
         
         return render(request, self.template_name, context=context)
@@ -56,9 +63,15 @@ class ProductTagListView(View):
     def get(self, request, slug):
         tag = get_object_or_404(Tag, tag=slug)
         products = tag.products.all()
+
+        paginator = Paginator(products, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        
         context = {
             'tag': tag,
             'products': products,
+            'page_obj': page_obj,
         }
         return render(request, self.template_name, context=context)
 

@@ -10,12 +10,18 @@ from mainapp.models.category import Category
 from mainapp.models.color import Color
 from mainapp.models.product import Product
 from mainapp.models.product_image import ProductImage
+from mainapp.models.product_specification import ProductSpec
 from mainapp.models.size import Size
 from mainapp.models.tag import Tag
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProductSpec)
+class ProductSpecAdmin(admin.ModelAdmin):
     pass
 
 
@@ -29,14 +35,14 @@ class SizeInline(TabularInline):
     model = Size
 
 
-# class TagInline(GenericTabularInline):
-#     extra = 1
-#     model = Tag
+class ProductSpecInline(TabularInline):
+    extra = 1
+    model = ProductSpec
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (SizeInline, ProductImageInline,)
+    inlines = (SizeInline, ProductImageInline, ProductSpecInline)
     list_display = ['id', 'name', 'image_tag']
     
     def image_tag(self, obj):
