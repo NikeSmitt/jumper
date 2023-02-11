@@ -37,7 +37,7 @@ class ProductListView(View):
         products = []
         category = Category.objects.get(slug=slug)
         for sub_category in category.children.all():
-            products.extend(list(sub_category.products.all()))
+            products.extend(list(sub_category.products.filter(active=True)))
         
         paginator = Paginator(products, 8)
         page_number = request.GET.get('page')
@@ -62,7 +62,7 @@ class ProductTagListView(View):
     
     def get(self, request, slug):
         tag = get_object_or_404(Tag, tag=slug)
-        products = tag.products.all()
+        products = tag.products.filter(active=True)
 
         paginator = Paginator(products, 8)
         page_number = request.GET.get('page')
