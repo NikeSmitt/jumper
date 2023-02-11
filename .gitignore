@@ -140,3 +140,8 @@ dmypy.json
 
 pgdata/
 /static/sass/.sass-cache/
+/media/categories/
+/media/images/
+/media/main_page_images/
+/media/news/
+/media/tags/

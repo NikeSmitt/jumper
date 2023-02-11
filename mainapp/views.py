@@ -16,15 +16,15 @@ class IndexView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['top_products'] = Product.objects.filter(top_selling=True)
-        context['head_products'] = Product.objects.filter(shown_on_main=True)
+        context['top_products'] = Product.objects.filter(top_selling=True).filter(active=True)
+        context['head_products'] = Product.objects.filter(shown_on_main=True).filter(active=True)
         context['tag_man'] = Tag.objects.filter(tag='man').first()
         context['tag_woman'] = Tag.objects.filter(tag='woman').first()
         context['tag_lifestyle'] = Tag.objects.filter(tag='lifestyle').first()
         context['additional_product'] = Product.objects.filter(
             ~Q(additional_product_image='') & Q(additional_product_image__isnull=False)
-        ).first()
-        context['products_for_user'] = Product.objects.all()[:7]
+        ).filter(active=True).first()
+        context['products_for_user'] = Product.objects.all().filter(active=True)[:7]
         context['news_list'] = NewsItem.objects.all()[:10]
         return context
 

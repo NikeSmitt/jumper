@@ -66,14 +66,16 @@ class NewsItem(models.Model):
         upload_to='news',
         blank=True,
         null=True,
-        help_text='Изображение на главной странице 400x266'
+        help_text='Изображение на главной странице 400x266',
+        default='defaults/news/default400-266.png'
     )
     
     body_image = models.ImageField(
         upload_to='news',
         blank=True,
         null=True,
-        help_text='Изображение в новости 900х450'
+        help_text='Изображение в новости 900х450',
+        default='defaults/news/default_main.png'
     )
     
     category = models.ForeignKey(
@@ -87,6 +89,7 @@ class NewsItem(models.Model):
     tags = models.ManyToManyField(
         NewsTag,
         related_name='news',
+        blank=True,
     )
     
     body = models.TextField(

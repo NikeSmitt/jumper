@@ -11,7 +11,7 @@ class Category(models.Model):
         upload_to='categories',
         verbose_name='Изображение в заголовке при выборе категории',
         help_text='Размер 1350х550',
-        default='cat_head_image_default.jpeg'
+        default='defaults/category/cat_head_image_default.jpeg'
     )
     
     class Meta:

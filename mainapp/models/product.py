@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 from mainapp.models.brand import Brand
 from mainapp.models.category import Category
-from mainapp.models.choices import GENDERS_CHOICES
+from mainapp.models.choices import GENDERS_CHOICES, LABEL_CHOICES
 from mainapp.models.tag import Tag
 
 
@@ -28,16 +28,16 @@ class Product(models.Model):
     code = models.CharField(max_length=30, verbose_name='Артикул', db_index=True, null=True, blank=True)
     
     shirt_slogan = models.CharField(
-        max_length=200,
+        max_length=500,
         verbose_name='Короткое описание',
         null=True,
         blank=True,
     )
     
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, related_name='products')
-    gender = models.CharField(choices=GENDERS_CHOICES, max_length=1, verbose_name='Пол')
+    gender = models.CharField(choices=GENDERS_CHOICES, max_length=1, verbose_name='Пол', blank=True)
     slug = models.SlugField()
-    colors = models.ManyToManyField('Color', related_name='products', blank=True)
+    # colors = models.ManyToManyField('Color', related_name='products', blank=True)
     active = models.BooleanField(default=True, verbose_name='Активен')
     deleted = models.BooleanField(default=False)
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
@@ -53,6 +53,8 @@ class Product(models.Model):
         help_text='Вывод товара на главную страницу в разделе лучшие продажи',
         default=False,
     )
+    
+    label = models.CharField(verbose_name='Наклейка', choices=LABEL_CHOICES, max_length=3, blank=True,)
     
     index_page_image = models.ImageField(
         verbose_name='Картинка на заглавной странице',
@@ -92,6 +94,8 @@ class Product(models.Model):
         blank=True,
     )
     
+    related_products = models.ManyToManyField('Product', blank=True)
+    
     def get_old_price(self):
         if self.discount and self.price:
             return int(self.price * (self.discount / (100 - self.discount) + 1))
@@ -102,5 +106,17 @@ class Product(models.Model):
     def get_absolute_path(self):
         return reverse('mainapp:product_detail', kwargs={'slug': self.slug})
     
+    
+    def get_related_products(self):
+        """Получаем связные продукты с проверкой,
+        что они активны и не тот же самый продукт"""
+        return self.related_products.filter(active=True).exclude(id=self.id)
+    
     def __str__(self):
         return f'{self.name})'
+    
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+        
+        ordering = ['-created']

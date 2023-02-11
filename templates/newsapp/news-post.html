@@ -28,7 +28,9 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="singlepost">
+                        {% if news.body_image %}
                         <figure><img alt="" class="img-fluid" src="{{ news.body_image.url }}"></figure>
+                        {% endif %}
                         <h1>{{ news.title }}</h1>
                         <div class="postmeta">
                             <ul>
@@ -98,7 +100,7 @@
                     <!-- /widget -->
                     <div class="widget">
                         <div class="widget-title">
-                            <h4>Popular Tags</h4>
+                            <h4>Теги</h4>
                         </div>
                         <div class="tags">
                             {% for tag in tags %}

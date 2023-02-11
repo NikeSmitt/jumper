@@ -43,7 +43,10 @@ class ProductSpecInline(TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = (SizeInline, ProductImageInline, ProductSpecInline)
-    list_display = ['id', 'name', 'image_tag']
+    list_display = ['id', 'name', 'image_tag', 'active']
+    list_display_links = ['id', 'name']
+    list_filter = ['brand']
+    search_fields = ['name']
     
     def image_tag(self, obj):
         """Получаем изображение"""

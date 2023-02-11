@@ -23,3 +23,7 @@ class ProductImage(models.Model):
     
     def __str__(self):
         return self.image.name
+    
+    class Meta:
+        verbose_name = 'Изображениe товара 400х400'
+        verbose_name_plural = 'Изображения товаров'
