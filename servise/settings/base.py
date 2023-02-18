@@ -130,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
 CART_SESSION_LIFE = 48000
+
+
+BOT_TOKEN = env('BOT_TOKEN')
