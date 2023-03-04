@@ -34,10 +34,9 @@ class ProductListView(View):
     template_name = 'product_list.html'
     
     def get(self, request, slug):
-        products = []
+        
         category = Category.objects.get(slug=slug)
-        for sub_category in category.children.all():
-            products.extend(list(sub_category.products.filter(active=True)))
+        products = category.products.filter(active=True)
         
         paginator = Paginator(products, 8)
         page_number = request.GET.get('page')
