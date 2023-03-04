@@ -64,7 +64,7 @@
                     <!-- /page_header -->
                     <div class="prod_info">
                         <h1>{{ product.name }}</h1>
-                        <p><small>Артикул: {{ product.code|default_if_none:'' }}</small><br>{{ product.shirt_slogan }}
+                        <p><small>Артикул: {{ product.code|default_if_none:'Не установлен' }}</small><br>{{ product.shirt_slogan }}
                         </p>
                         <div class="prod_options">
                             {#                            <div class="row">#}
@@ -81,9 +81,9 @@
                             <div class="row">
                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Размеры
                                     ({{ product.sizes.first.label_shoes }})</strong>
-                                                                        - Таблица размеров <a
-                                                                                href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i
-                                                                                class="ti-help-alt"></i></a>
+                                    - Таблица размеров <a
+                                            href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i
+                                            class="ti-help-alt"></i></a>
                                 </label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="custom-select-form">
@@ -229,7 +229,7 @@
                         </div>
                     </div>
                     <!-- /TAB A -->
-                    <div id="pane-B" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-B">
+                    <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
                         <div class="card-header" role="tab" id="heading-B">
                             <h5 class="mb-0">
                                 <a class="collapsed" data-bs-toggle="collapse" href="#collapse-B" aria-expanded="false"
@@ -251,7 +251,7 @@
                     </div>
                     <!-- /TAB B -->
 
-                    <div id="pane-C" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-C">
+                    <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
                         <div class="card-header" role="tab" id="heading-C">
                             <h5 class="mb-0">
                                 <a class="collapsed" data-bs-toggle="collapse" href="#collapse-C" aria-expanded="false"
@@ -446,9 +446,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-{#                    <p>Lorem ipsum dolor sit amet, et velit propriae invenire mea, ad nam alia intellegat. Aperiam#}
-{#                        mediocrem rationibus nec te. Tation persecuti accommodare pro te. Vis et augue legere, vel#}
-{#                        labitur habemus ocurreret ex.</p>#}
+                    {#                    <p>Lorem ipsum dolor sit amet, et velit propriae invenire mea, ad nam alia intellegat. Aperiam#}
+                    {#                        mediocrem rationibus nec te. Tation persecuti accommodare pro te. Vis et augue legere, vel#}
+                    {#                        labitur habemus ocurreret ex.</p>#}
                     <div class="table-responsive">
                         <table class="table table-striped table-sm sizes">
                             <tbody>

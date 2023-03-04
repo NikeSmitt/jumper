@@ -2072,7 +2072,7 @@ header .main_header {
     text-align: center;
   }
   header .main_header #logo a img {
-    height: 30px;
+    height: 40px;
     width: auto;
   }
 }
@@ -2140,12 +2140,12 @@ header ul.top_tools > li:nth-child(4), header ul.top_tools > li:nth-child(5) {
     display: inline-block;
   }
 }
-@media (max-width: 767px) {
-  header ul.top_tools > li:last-child {
-    float: left;
-    margin-left: 0;
-  }
-}
+/*@media (max-width: 767px) {*/
+/*  header ul.top_tools > li:last-child {*/
+/*    float: left;*/
+/*    margin-left: 0;*/
+/*  }*/
+/*}*/
 header ul.top_tools > li a {
   display: block;
   position: relative;
@@ -2846,7 +2846,7 @@ nav a.open_close#close_in > i:hover {
     margin-bottom: 15px;
   }
   #header_menu img {
-    height: 30px !important;
+    height: 40px !important;
     width: auto !important;
   }
 
