@@ -1,5 +1,3 @@
-import datetime
-
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
@@ -61,9 +59,8 @@ class Order(models.Model):
         auto_now_add=True,
     )
     
-    comment = models.CharField(
+    comment = models.TextField(
         verbose_name='Дополнения к заказу',
-        max_length=500,
         blank=True,
         null=True
     )
@@ -83,7 +80,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(
         Order,
         on_delete=models.CASCADE,
-        related_name='order',
+        related_name='order_items',
         verbose_name='К какому заказу относится',
     )
     
@@ -106,7 +103,7 @@ class OrderItem(models.Model):
     )
     
     def __str__(self):
-        return str(self.product)
+        return f'{self.product} - Размер: {self.size.value} - Количество: {self.quantity}'
     
     class Meta:
         verbose_name = 'Продукт в заказе'

@@ -11,8 +11,11 @@ class LogoutCreateOrderForm(forms.ModelForm):
         'first_name': 'Имя',
         'last_name': 'Фамилия',
         'address': 'Адрес',
-        'city': 'Город'
+        'city': 'Город',
+        'comment': 'Дополнения к заказу'
     }
+
+    comment = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 2, 'style': 'resize: none; height: 100px'}))
 
     class Meta:
         model = Order

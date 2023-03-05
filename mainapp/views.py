@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 
+from mainapp.forms import ProductSearchForm
 from mainapp.models.category import Category
 from mainapp.models.product import Product
 from mainapp.models.tag import Tag
@@ -26,6 +27,7 @@ class IndexView(TemplateView):
         ).filter(active=True).first()
         context['products_for_user'] = Product.objects.all().filter(active=True)[:7]
         context['news_list'] = NewsItem.objects.all()[:10]
+        
         return context
 
 
@@ -88,3 +90,35 @@ class ProductDetailView(DetailView):
 
 
 
+class ProductSearchListView(View):
+    """Поиск продуктов"""
+    template_name = 'product_list.html'
+    context = {'searching': True}
+    def get(self, request):
+        
+        paginator = Paginator(Product.objects.all(), 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    
+        context = {
+            # 'products': products,
+            'page_obj': page_obj,
+        }
+        return render(request, self.template_name, context=context)
+    
+    def post(self, request):
+        form = ProductSearchForm(request.POST)
+        if form.is_valid():
+            products = Product.objects.filter(name__icontains=form.cleaned_data['name'])
+            
+            paginator = Paginator(products, 8)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            
+            self.context.update({
+                'products': products,
+                'page_obj': page_obj,
+            })
+            return render(request, self.template_name, context=self.context)
+        return render(request, self.template_name, context=self.context)
+    

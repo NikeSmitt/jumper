@@ -113,7 +113,7 @@ class Product(models.Model):
         return self.related_products.filter(active=True).exclude(id=self.id)
     
     def __str__(self):
-        return f'{self.name})'
+        return f'{self.name}'
     
     class Meta:
         verbose_name = 'Товар'

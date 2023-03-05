@@ -22,13 +22,14 @@ class Size(models.Model):
     )
     
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='sizes')
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=1)
     label_shoes = models.CharField(
         choices=SHOES_SIZE_LIBELS,
         max_length=3,
         verbose_name='Система размера обуви',
         null=True,
         blank=True,
+        default='rus'
     )
     label_clothes = models.CharField(
         choices=CLOTHES_SIZE_LIBELS,

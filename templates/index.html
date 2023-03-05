@@ -83,9 +83,12 @@
                 {% for top_product in top_products %}
                     <div class="col-6 col-md-4 col-xl-3">
                         <div class="grid_item">
+                            {% if top_product.label %}
+                                <span class="ribbon {{ top_product.label }}">{{ top_product.label }}</span>
+                            {% endif %}
                             <figure>
                                 {% if top_product.discount %}
-                                    <span class="ribbon off">{{ top_product.discount }}</span>
+                                    <span class="ribbon off">-{{ top_product.discount }}%</span>
                                 {% endif %}
                                 <a href="{{ top_product.get_absolute_path }}">
                                     <img class="img-fluid lazy" src=""
@@ -104,9 +107,9 @@
                                 {% endif %}
                             </div>
                             <ul>
-{#                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
-{#                                       title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>#}
-{#                                </li>#}
+                                {#                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
+                                {#                                       title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>#}
+                                {#                                </li>#}
                             </ul>
                         </div>
                         <!-- /grid_item -->
@@ -131,7 +134,7 @@
                                         <div class="price_box">
                                             <span class="new_price">{{ product.price|floatformat:0 }} ₽</span>
                                             {% if product.discount %}
-                                            <span class="old_price">{{ product.get_old_price|floatformat:0 }} ₽</span>
+                                                <span class="old_price">{{ product.get_old_price|floatformat:0 }} ₽</span>
                                             {% endif %}
                                         </div>
                                         <a class="btn_1" href="{{ product.get_absolute_path }}" role="button">Купить</a>
@@ -153,77 +156,77 @@
             </div>
             <div class="owl-carousel owl-theme products_carousel">
                 {% for product in products_for_user %}
-                <div class="item">
-                    <div class="grid_item">
-                        {% if product.label %}
-                        <span class="ribbon new">{{ product.label }}</span>
-                        {% endif %}
-                        <figure>
+                    <div class="item">
+                        <div class="grid_item">
+                            {% if product.label %}
+                                <span class="ribbon {{ product.label }}">{{ product.label }}</span>
+                            {% endif %}
+                            <figure>
+                                <a href="{{ product.get_absolute_path }}">
+                                    <img class="owl-lazy" src="{{ product.images.all.first.image.url }}"
+                                         data-src="{{ product.images.all.first.image.url }}" alt="product_image">
+                                </a>
+                            </figure>
+                            {#                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i#}
+                            {#                                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i>#}
+                            {#                        </div>#}
                             <a href="{{ product.get_absolute_path }}">
-                                <img class="owl-lazy" src="{{ product.images.all.first.image.url }}"
-                                     data-src="{{ product.images.all.first.image.url }}" alt="product_image">
+                                <h3>{{ product.name }}</h3>
                             </a>
-                        </figure>
-{#                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i#}
-{#                                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i>#}
-{#                        </div>#}
-                        <a href="{{ product.get_absolute_path }}">
-                            <h3>{{ product.name }}</h3>
-                        </a>
-                        <div class="price_box">
-                            <span class="new_price">{{ product.price|floatformat:0 }} ₽</span>
+                            <div class="price_box">
+                                <span class="new_price">{{ product.price|floatformat:0 }} ₽</span>
+                            </div>
+                            {#                        <ul>#}
+                            {#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
+                            {#                                   title="Add to favorites"><i#}
+                            {#                                    class="ti-heart"></i><span>Add to favorites</span></a></li>#}
+                            {#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
+                            {#                                   title="Add to compare"><i#}
+                            {#                                    class="ti-control-shuffle"></i><span>Add to compare</span></a></li>#}
+                            {#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
+                            {#                                   title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>#}
+                            {#                            </li>#}
+                            {#                        </ul>#}
                         </div>
-{#                        <ul>#}
-{#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
-{#                                   title="Add to favorites"><i#}
-{#                                    class="ti-heart"></i><span>Add to favorites</span></a></li>#}
-{#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
-{#                                   title="Add to compare"><i#}
-{#                                    class="ti-control-shuffle"></i><span>Add to compare</span></a></li>#}
-{#                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"#}
-{#                                   title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>#}
-{#                            </li>#}
-{#                        </ul>#}
+                        <!-- /grid_item -->
                     </div>
-                    <!-- /grid_item -->
-                </div>
-                <!-- /item -->
+                    <!-- /item -->
                 {% endfor %}
             </div>
             <!-- /products_carousel -->
         </div>
         <!-- /container -->
 
-{#        <div class="bg_gray">#}
-{#            <div class="container margin_30">#}
-{#                <div id="brands" class="owl-carousel owl-theme">#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_1.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_2.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_3.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_4.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_5.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                    <div class="item">#}
-{#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_6.png"#}
-{#                                          alt="" class="owl-lazy"></a>#}
-{#                    </div><!-- /item -->#}
-{#                </div><!-- /carousel -->#}
-{#            </div><!-- /container -->#}
-{#        </div>#}
+        {#        <div class="bg_gray">#}
+        {#            <div class="container margin_30">#}
+        {#                <div id="brands" class="owl-carousel owl-theme">#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_1.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_2.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_3.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_4.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_5.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                    <div class="item">#}
+        {#                        <a href="#0"><img src="img/brands/placeholder_brands.png" data-src="img/brands/logo_6.png"#}
+        {#                                          alt="" class="owl-lazy"></a>#}
+        {#                    </div><!-- /item -->#}
+        {#                </div><!-- /carousel -->#}
+        {#            </div><!-- /container -->#}
+        {#        </div>#}
         <!-- /bg_gray -->
 
         <div class="container margin_60_35">
@@ -234,22 +237,23 @@
             </div>
             <div class="row">
                 {% for news in news_list %}
-                <div class="col-lg-6">
-                    <a class="box_news" href="{{ news.get_absolute_path }}">
-                        <figure>
-                            <img src="img/blog-thumb-placeholder.jpg" data-src="{{ news.thumb_image.url }}" alt=""
-                                 width="400" height="266" class="lazy">
-                            <figcaption><strong>{{ news.created_at.day }}</strong>{{ news.created_at|date:'M' }}</figcaption>
-                        </figure>
-                        <ul>
-                            <li>by {{ news.author_name }}</li>
-                            <li>{{ news.created_at|date:"d.m.y" }}</li>
-                        </ul>
-                        <h4>{{ news.title }}</h4>
-                        <p>{{ news.trailer }}...</p>
-                    </a>
-                </div>
-                <!-- /box_news -->
+                    <div class="col-lg-6">
+                        <a class="box_news" href="{{ news.get_absolute_path }}">
+                            <figure>
+                                <img src="img/blog-thumb-placeholder.jpg" data-src="{{ news.thumb_image.url }}" alt=""
+                                     width="400" height="266" class="lazy">
+                                <figcaption><strong>{{ news.created_at.day }}</strong>{{ news.created_at|date:'M' }}
+                                </figcaption>
+                            </figure>
+                            <ul>
+                                <li>by {{ news.author_name }}</li>
+                                <li>{{ news.created_at|date:"d.m.y" }}</li>
+                            </ul>
+                            <h4>{{ news.title }}</h4>
+                            <p>{{ news.trailer }}...</p>
+                        </a>
+                    </div>
+                    <!-- /box_news -->
                 {% endfor %}
 
             </div>

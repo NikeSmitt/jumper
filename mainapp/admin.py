@@ -40,6 +40,15 @@ class ProductSpecInline(TabularInline):
     model = ProductSpec
 
 
+@admin.action(description='Показывать товары')
+def make_active(modeladmin, request, queryset):
+    queryset.update(active=True)
+
+
+@admin.action(description='Спрятать товары')
+def make_inactive(modeladmin, request, queryset):
+    queryset.update(active=False)
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = (SizeInline, ProductImageInline, ProductSpecInline)
@@ -47,6 +56,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'name']
     list_filter = ['brand']
     search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
+    actions = [make_active, make_inactive]
     
     def image_tag(self, obj):
         """Получаем изображение"""
