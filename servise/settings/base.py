@@ -131,6 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CART_SESSION_ID = 'cart'
 CART_SESSION_LIFE = 48000
 
+ADMIN_EMAILS = env.list('ADMIN_EMAILS')
 
 # BOT_TOKEN = env('BOT_TOKEN')
 
