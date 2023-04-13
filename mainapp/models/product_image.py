@@ -11,7 +11,6 @@ def img_dir(instance, filename):
         return '/'.join(
             ['images', f'{instance.product.brand.name}', f'{instance.product.slug}-{count + 1}'])
     except AttributeError as e:
-        print(e)
         return filename
 
 

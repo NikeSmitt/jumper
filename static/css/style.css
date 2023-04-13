@@ -116,7 +116,7 @@ Author URI: http://themeforest.net/user/Ansonika/
 .hamburger-inner::after {
   width: 26px;
   height: 2px;
-  background-color: #fff;
+  background-color: #111;
   border-radius: 0;
   position: absolute;
   transition-property: transform;
@@ -2362,13 +2362,13 @@ header .sticky_element {
   }
 }
 header.version_1 .main_header {
-  background-color: #004dda;
+  background-color: #ffffff;
 }
 header.version_1 .main_header a.phone_top {
-  color: #fff;
+  color: #000;
 }
 header.version_1 .main_header a.phone_top:before {
-  color: #fff;
+  color: #000;
 }
 @media (max-width: 767px) {
   header.version_1 .main_header ul.top_tools {
@@ -2640,11 +2640,11 @@ header.version_2 .search_mob_wp .btn_1:hover {
 }
 
 header.version_1 .main-menu > ul > li > a {
-  color: #fff;
+  color: #000;
 }
 
 header.version_1 .main-menu > ul > li:hover > a {
-  color: #fff;
+  color: #000;
 }
 
 .main-menu > ul > li.submenu:hover > a:after {

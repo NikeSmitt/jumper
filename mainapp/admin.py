@@ -40,24 +40,24 @@ class ProductSpecInline(TabularInline):
     model = ProductSpec
 
 
-@admin.action(description='Показывать товары')
-def make_active(modeladmin, request, queryset):
-    queryset.update(active=True)
-
-
-@admin.action(description='Спрятать товары')
-def make_inactive(modeladmin, request, queryset):
-    queryset.update(active=False)
-
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = (SizeInline, ProductImageInline, ProductSpecInline)
-    list_display = ['id', 'name', 'image_tag', 'active']
+    list_display = ['id', 'name', 'image_tag', 'active', 'deleted']
+    list_editable = ['active']
     list_display_links = ['id', 'name']
     list_filter = ['brand']
     search_fields = ['name']
     prepopulated_fields = {'slug': ('name',)}
-    actions = [make_active, make_inactive]
+    actions = ['make_active', 'make_inactive']
+
+    @admin.action(description='Показывать товары')
+    def make_active(self, request, queryset):
+        queryset.update(active=True)
+
+    @admin.action(description='Спрятать товары')
+    def make_inactive(self, request, queryset):
+        queryset.update(active=False)
     
     def image_tag(self, obj):
         """Получаем изображение"""
@@ -88,4 +88,8 @@ class SizeAdmin(admin.ModelAdmin):
     list_display = ['value', 'label_clothes', 'product', 'quantity']
 
 
-admin.site.register(Tag)
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['title', 'tag', 'show']
+    list_editable = ['show']
+    

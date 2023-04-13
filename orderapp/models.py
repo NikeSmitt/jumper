@@ -114,10 +114,6 @@ class OrderItem(models.Model):
 def generate_order_number(sender, instance, **kwargs):
     today = timezone.now()
     count = Order.objects.filter(created_at__day=today.day).count()
-    try:
-        number = f'{today.strftime("%y%m%d")}-{count + 1}'
-    except ValueError as e:
-        print(e)
-    else:
-        instance.order_number = number
-        # instance.save()
+    number = f'{today.strftime("%y%m%d")}-{count + 1}'
+    instance.order_number = number
+    

@@ -42,34 +42,19 @@
         <!--/carousel-->
 
         <ul id="banners_grid" class="clearfix">
+          {% for t in product_tags %}
             <li>
-                <a href="{{ tag_man.get_absolute_path }}" class="img_container">
-                    <img src="{{ tag_man.image.url }}" data-src="{{ tag_man.image.url }}" alt="" class="lazy">
+                <a href="{{ t.get_absolute_path }}" class="img_container">
+                  {% if t.image %}
+                    <img src="{{ t.image.url }}" data-src="{{ t.image.url }}" alt="" class="lazy">
+                  {% endif %}
                     <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                        <h3>{{ tag_man.title }}</h3>
+                        <h3>{{ t.title }}</h3>
                         <div><span class="btn_1">Подобрать</span></div>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="{{ tag_woman.get_absolute_path }}" class="img_container">
-                    <img src="{{ tag_woman.image.url }}" data-src="{{ tag_woman.image.url }}" alt="" class="lazy">
-                    <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                        <h3>{{ tag_woman.title }}</h3>
-                        <div><span class="btn_1">Подобрать</span></div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="{{ tag_lifestyle.get_absolute_path }}" class="img_container">
-                    <img src="{{ tag_lifestyle.image.url }}" data-src="{{ tag_lifestyle.image.url }}" alt=""
-                         class="lazy">
-                    <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                        <h3>{{ tag_lifestyle.title }}</h3>
-                        <div><span class="btn_1">Подобрать</span></div>
-                    </div>
-                </a>
-            </li>
+          {% endfor %}
         </ul>
         <!--/banners_grid -->
 

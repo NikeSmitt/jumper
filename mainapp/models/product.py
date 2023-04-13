@@ -13,6 +13,13 @@ from mainapp.models.choices import GENDERS_CHOICES, LABEL_CHOICES
 from mainapp.models.tag import Tag
 
 
+class CustomProductManager(models.Manager):
+    def get_queryset(self):
+        return super(CustomProductManager, self).get_queryset() \
+            .filter(deleted=False) \
+            .filter(active=True)
+
+
 class Product(models.Model):
     """Непосредственно товар"""
     
@@ -27,6 +34,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='Название товара', db_index=True)
     code = models.CharField(max_length=30, verbose_name='Артикул', db_index=True, null=True, blank=True)
     
+    # correct error - short_slogan
     shirt_slogan = models.CharField(
         max_length=500,
         verbose_name='Короткое описание',
@@ -54,7 +62,7 @@ class Product(models.Model):
         default=False,
     )
     
-    label = models.CharField(verbose_name='Наклейка', choices=LABEL_CHOICES, max_length=3, blank=True,)
+    label = models.CharField(verbose_name='Наклейка', choices=LABEL_CHOICES, max_length=3, blank=True, )
     
     index_page_image = models.ImageField(
         verbose_name='Картинка на заглавной странице',
@@ -96,16 +104,15 @@ class Product(models.Model):
     
     related_products = models.ManyToManyField('Product', blank=True)
     
+    objects = models.Manager()
+    products = CustomProductManager()
+    
     def get_old_price(self):
         if self.discount and self.price:
             return int(self.price * (self.discount / (100 - self.discount) + 1))
     
-    def get_total_quantity(self):
-        pass
-    
     def get_absolute_path(self):
         return reverse('mainapp:product_detail', kwargs={'slug': self.slug})
-    
     
     def get_related_products(self):
         """Получаем связные продукты с проверкой,

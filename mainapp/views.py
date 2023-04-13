@@ -17,11 +17,9 @@ class IndexView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['top_products'] = Product.objects.filter(top_selling=True).filter(active=True)
-        context['head_products'] = Product.objects.filter(shown_on_main=True).filter(active=True)
-        context['tag_man'] = Tag.objects.filter(tag='man').first()
-        context['tag_woman'] = Tag.objects.filter(tag='woman').first()
-        context['tag_lifestyle'] = Tag.objects.filter(tag='lifestyle').first()
+        context['top_products'] = Product.products.filter(top_selling=True)
+        context['head_products'] = Product.products.filter(shown_on_main=True)
+        context['product_tags'] = Tag.objects.filter(show=True)
         context['additional_product'] = Product.objects.filter(
             ~Q(additional_product_image='') & Q(additional_product_image__isnull=False)
         ).filter(active=True).first()
@@ -109,7 +107,7 @@ class ProductSearchListView(View):
     def post(self, request):
         form = ProductSearchForm(request.POST)
         if form.is_valid():
-            products = Product.objects.filter(name__icontains=form.cleaned_data['name'])
+            products = Product.products.filter(name__icontains=form.cleaned_data['name'])
             
             paginator = Paginator(products, 8)
             page_number = request.GET.get('page')
