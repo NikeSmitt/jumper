@@ -10,7 +10,6 @@ from django.utils.text import slugify
 from mainapp.models.brand import Brand
 from mainapp.models.category import Category
 from mainapp.models.choices import GENDERS_CHOICES, LABEL_CHOICES
-from mainapp.models.tag import Tag
 
 
 class CustomProductManager(models.Manager):
@@ -23,12 +22,10 @@ class CustomProductManager(models.Manager):
 class Product(models.Model):
     """Непосредственно товар"""
     
-    category = models.ForeignKey(
+    categories = models.ManyToManyField(
         Category,
         related_name='products',
         blank=True,
-        on_delete=models.SET_NULL,
-        null=True
     )
     
     name = models.CharField(max_length=200, verbose_name='Название товара', db_index=True)
@@ -45,11 +42,9 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, related_name='products')
     gender = models.CharField(choices=GENDERS_CHOICES, max_length=1, verbose_name='Пол', blank=True)
     slug = models.SlugField()
-    # colors = models.ManyToManyField('Color', related_name='products', blank=True)
     active = models.BooleanField(default=True, verbose_name='Активен')
     deleted = models.BooleanField(default=False)
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
-    # quantity = models.PositiveIntegerField(default=0)
     manufacture = models.CharField(max_length=50, verbose_name='Производство', blank=True, null=True)
     price = models.FloatField(verbose_name='Цена', default=0.0)
     
@@ -91,8 +86,6 @@ class Product(models.Model):
         default=False,
         help_text='Проверить наличие соответсвующий картинки'
     )
-    
-    tags = models.ManyToManyField(Tag, related_name='products', blank=True)
     
     additional_product_image = models.ImageField(
         verbose_name='Дополнительное изображение',

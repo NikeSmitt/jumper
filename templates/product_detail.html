@@ -12,9 +12,6 @@
 
     <main>
         <div class="container margin_30">
-            {#            <div class="countdown_inner">-20% This offer ends in#}
-            {#                <div data-countdown="2019/05/15" class="countdown"></div>#}
-            {#            </div>#}
             <div class="row">
                 <div class="col-md-6">
                     <div class="all">
@@ -50,17 +47,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="breadcrumbs">
-                        <ul>
-                            <li><a href="{% url 'mainapp:index' %}">Home</a></li>
-                            {% if category.parent %}
-                                <li>
-                                    <a href="{{ category.parent.get_absolute_path }}">{{ category.parent.name }}</a>
-                                </li>
-                            {% endif %}
-                            <li>{{ category.name }}</li>
-                        </ul>
-                    </div>
                     <!-- /page_header -->
                     <div class="prod_info">
                         <h1>{{ product.name }}</h1>

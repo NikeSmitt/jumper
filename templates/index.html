@@ -42,14 +42,14 @@
         <!--/carousel-->
 
         <ul id="banners_grid" class="clearfix">
-          {% for t in product_tags %}
+          {% for c in banner_cat %}
             <li>
-                <a href="{{ t.get_absolute_path }}" class="img_container">
-                  {% if t.image %}
-                    <img src="{{ t.image.url }}" data-src="{{ t.image.url }}" alt="" class="lazy">
+                <a href="{{ c.get_absolute_path }}" class="img_container">
+                  {% if c.banner.first.image %}
+                    <img src="{{ c.banner.first.image.url }}" data-src="{{ c.banner.first.image.url }}" alt="" class="lazy">
                   {% endif %}
                     <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                        <h3>{{ t.title }}</h3>
+                        <h3>{{ c.name }}</h3>
                         <div><span class="btn_1">Подобрать</span></div>
                     </div>
                 </a>

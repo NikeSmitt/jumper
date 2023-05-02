@@ -1,5 +1,5 @@
 from cartapp.api import api_add_to_cart, api_get_cart_items, remove_cart_item
-from mainapp.views import IndexView, ProductListView, ProductDetailView, ProductTagListView, ProductSearchListView
+from mainapp.views import IndexView, ProductListView, ProductDetailView, ProductSearchListView
 from django.urls import path
 
 app_name = 'mainapp'
@@ -8,7 +8,6 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('catalog/<slug:slug>/', ProductListView.as_view(), name='product_list'),
     path('product/<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
-    path('tag/<slug:slug>/', ProductTagListView.as_view(), name='product_tag_list'),
     path('products/', ProductSearchListView.as_view(), name='product_search_list'),
 
     

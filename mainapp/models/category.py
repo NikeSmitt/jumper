@@ -1,5 +1,8 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
+
+from mainapp.models import Banner
 
 
 class Category(models.Model):
@@ -14,9 +17,13 @@ class Category(models.Model):
         default='defaults/category/cat_head_image_default.jpeg'
     )
     
+    header_show = models.BooleanField(verbose_name='Показывать на хедере', default=True)
+    order_pos = models.PositiveSmallIntegerField(verbose_name='Позиция в хедере', null=True, blank=True, unique=True)
+    
     class Meta:
         unique_together = ('slug', 'parent')
         verbose_name_plural = 'categories'
+        ordering = ['order_pos', '-name']
     
     def __str__(self):
         """Собираем полный путь к данной категории"""
@@ -30,3 +37,5 @@ class Category(models.Model):
     
     def get_absolute_path(self):
         return reverse('mainapp:product_list', kwargs={'slug': self.slug})
+    
+    banner = GenericRelation(Banner)

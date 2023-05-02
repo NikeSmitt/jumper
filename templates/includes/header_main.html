@@ -28,48 +28,29 @@
               <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
             </div>
             <ul class="d-flex">
-              <li class="submenu">
-                <a href="#"
-                   class="show-submenu">Новинки</a>
-              </li>
+
               {% for category in categories %}
-                {% if category.children.all %}
-                  <li class="submenu">
+                {% if category.header_show %}
+                  {% if category.children.all %}
+                    <li class="submenu">
+                      <a href="javascript:void(0)"
+                         class="show-submenu">{{ category.name }}</a>
+                      <ul>
+                        {% for sub_cat in category.children.all %}
+                          <li><a href="{{ sub_cat.get_absolute_path }}">{{ sub_cat.name }}</a>
+                          </li>
+                        {% endfor %}
 
-                    <a href="javascript:void(0)"
-                       class="show-submenu">{{ category.name }}</a>
-                    <ul>
-                      {% for sub_cat in category.children.all %}
-                        <li><a href="{{ sub_cat.get_absolute_path }}">{{ sub_cat.name }}</a>
-                        </li>
-                      {% endfor %}
-
-                    </ul>
-                  </li>
-                {% else %}
-                  <li><a href="{{ category.get_absolute_path }}">{{ category.name }}</a></li>
+                      </ul>
+                    </li>
+                  {% else %}
+                    <li class="submenu">
+                      <a href="{{ category.get_absolute_path }}"
+                         class="show-submenu">{{ category.name }}</a>
+                    </li>
+                  {% endif %}
                 {% endif %}
               {% endfor %}
-
-              <li class="submenu">
-
-                <a href="javascript:void(0)"
-                   class="show-submenu">Спорт</a>
-                {% if sport_tags %}
-                  <ul>
-                    {% for t in sport_tags %}
-                      <li><a href="#">{{ t.title }}</a>
-                      </li>
-                    {% endfor %}
-
-                  </ul>
-                {% endif %}
-              </li>
-
-              <li class="submenu">
-                <a href="#"
-                   class="show-submenu">Распродажа</a>
-              </li>
 
             </ul>
           </div>
