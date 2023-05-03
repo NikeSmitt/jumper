@@ -23,13 +23,13 @@ $(document).ready(() => {
             quantity: product_quantity,
             size_id: sizeId,
             update: false,
-        }])
+        }], refresh=false)
 
 
     });
 
 
-    const add_to_cart = (products) => {
+    const add_to_cart = (products, refresh) => {
         // посылаем запрос на сервер для обновления корзины
         $.ajax({
             type: 'POST',
@@ -51,7 +51,10 @@ $(document).ready(() => {
                 console.log(error)
             },
             complete: () => {
-                location.reload()
+                if (refresh) {
+                    location.reload()
+                }
+
             }
         })
     }
