@@ -14,7 +14,7 @@ class Cart:
         self.cart = self.session.get(settings.CART_SESSION_ID, {})
         # print(self.cart or 'Nope')
     
-    def add(self, product: Product, quantity=1, size_id=None):
+    def add(self, product: Product, quantity=1, size_id=None, update=False):
         product_id = str(product.id)
         size = get_object_or_404(Size, id=size_id)
         if product_id not in self.cart:
@@ -29,7 +29,10 @@ class Cart:
                 'size': size.value,
                 'size_label': size.label_shoes if size.label_shoes else size.label_clothes
             }
-        self.cart[product_id]['quantity'] += quantity
+        if update:
+            self.cart[product_id]['quantity'] = quantity
+        else:
+            self.cart[product_id]['quantity'] += quantity
         
         self.save()
         

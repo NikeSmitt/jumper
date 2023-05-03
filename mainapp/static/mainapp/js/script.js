@@ -11,21 +11,31 @@ $(document).ready(() => {
 
         // собираем данные для корзины
         const productSlug = $(this).attr('data-slug')
-        const productID = $(this).attr('data-id')
+        const productId = $(this).attr('data-id')
         const product_quantity = parseInt($('#quantity_1').val())
-        const size_id = $('#size_select_id').val()
+        const sizeId = $('#size_select_id').val()
         // console.log(`Selected size id: ${size_id}`)
         // console.log(product_quantity)
 
 
+        add_to_cart([{
+            id: productId,
+            quantity: product_quantity,
+            size_id: sizeId,
+            update: false,
+        }])
+
+
+    });
+
+
+    const add_to_cart = (products) => {
         // посылаем запрос на сервер для обновления корзины
         $.ajax({
             type: 'POST',
             url: '/api/add_to_cart/',
             data: JSON.stringify({
-                id: productID,
-                quantity: product_quantity,
-                size_id: size_id,
+                products
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -33,16 +43,18 @@ $(document).ready(() => {
             },
             dataType: 'json',
             success: (data) => {
-
-                $('#quantity_on_top_popup').text(product_quantity)
+                // console.log(data)
+                $('#quantity_on_top_popup').text(data.product_quantity)
                 get_cart()
             },
             fail: (error) => {
                 console.log(error)
+            },
+            complete: () => {
+                location.reload()
             }
         })
-
-    });
+    }
 
 
     // обновляем данные корзины
@@ -112,12 +124,29 @@ $(document).ready(() => {
         }
         $('.cart_bt strong').text(`${cart_total_quantity}`)
         $('#cart-header-total').text(`${cart_total_price} ₽`)
-        $('#cart-header-total').text(`${cart_total_price} ₽`)
+        // $('#cart-header-total').text(`${cart_total_price} ₽`)
 
 
     }
     // console.log(csrfToken)
     get_cart()
 
+    $('#update_basket').click((e) => {
+        let products = []
+        $('input.qty2').each((i, el) => {
+            const productId = $(el).attr("data-productId")
+            const qty = $(el).val()
+            const sizeId = $(el).attr("data-sizeId")
+            products.push({
+                id: productId,
+                quantity: qty,
+                size_id: sizeId,
+                update: true,
+            })
+        })
 
+        add_to_cart(products, refresh=true)
+
+
+    })
 })

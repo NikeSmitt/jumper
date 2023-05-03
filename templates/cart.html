@@ -68,9 +68,12 @@
                         <td>
                             <div class="numbers-row">
                                 <input type="text" value="{{ item.quantity }}"
-                                       id="quantity_{{ forloop.counter }}"
+                                       id="quantity_{{ item.id }}"
                                        class="qty2"
-                                       name="quantity_{{ forloop.counter }}">
+                                       name="quantity_{{ item.id }}"
+                                       data-productId="{{ item.id }}"
+                                       data-sizeId="{{ item.size_id }}"
+                                >
                             </div>
                         </td>
                         <td>
@@ -86,7 +89,7 @@
 
             <div class="row add_top_30 flex-sm-row-reverse cart_actions">
                 <div class="col-sm-4 text-end">
-                    <button type="button" class="btn_1 gray">Обновить корзину</button>
+                    <button type="button" class="btn_1 gray" id="update_basket">Обновить корзину</button>
                 </div>
                 <div class="col-sm-8">
                     <div class="apply-coupon">

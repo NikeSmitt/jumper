@@ -10,13 +10,17 @@ from mainapp.models.product import Product
 
 def api_add_to_cart(request):
     if request.method == 'POST':
-        json_response = {'success': True}
+        
         data = json.loads(request.body)
         cart = Cart(request)
-        product = get_object_or_404(Product, pk=data['id'])
-        size_id = data.get('size_id')
-        cart.add(product, quantity=data['quantity'], size_id=size_id)
-        
+        for product_data in data.get('products'):
+            product = get_object_or_404(Product, pk=product_data['id'])
+            size_id = product_data.get('size_id')
+            update = product_data.get('update')
+            quantity = product_data.get('quantity')
+            cart.add(product, quantity=quantity, size_id=size_id, update=update)
+
+        json_response = {'success': True, 'product_quantity': len(cart)}
         return JsonResponse(json_response)
     return JsonResponse({'success': False})
 
