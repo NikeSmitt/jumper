@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 
 from mainapp.forms import ProductSearchForm
-from mainapp.models import Brand
+from mainapp.models import Brand, Banner
 from mainapp.models.category import Category
 from mainapp.models.product import Product
 from newsapp.models import NewsItem
@@ -21,12 +21,13 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
         
         context['top_products'] = Product.products.filter(top_selling=True)
-        context['head_products'] = Product.products.filter(shown_on_main=True)
+        # context['head_products'] = Product.products.filter(shown_on_main=True)
         context['additional_product'] = Product.objects.filter(
             ~Q(additional_product_image='') & Q(additional_product_image__isnull=False)
         ).filter(active=True).first()
         context['products_for_user'] = Product.objects.all().filter(active=True)[:7]
         context['news_list'] = NewsItem.objects.all()[:10]
+        context['banners'] = Banner.objects.filter(show=True)
         
         return context
 

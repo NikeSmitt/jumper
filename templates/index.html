@@ -13,19 +13,19 @@
     <main>
         <div id="carousel-home" class="add_top_5">
             <div class="owl-carousel owl-theme">
-                {% for product in head_products %}
-                    <div class="owl-slide cover" style="background-image: url({{ product.index_page_image.url }});">
+                {% for banner in banners %}
+                    <div class="owl-slide cover" style="background-image: url({{ banner.image.url }});">
                         <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
                             <div class="container">
                                 <div class="row justify-content-center justify-content-md-end">
                                     <div class="col-lg-6 static">
                                         <div class="slide-text {% cycle 'text-end' '' 'text-center' %} white">
-                                            <h2 class="owl-slide-animated owl-slide-title">{{ product.main_page_title }}</h2>
+                                            <h2 class="owl-slide-animated owl-slide-title">{{ banner.title }}</h2>
                                             <p class="owl-slide-animated owl-slide-subtitle">
-                                                {{ product.main_page_subtitle }}
+                                                {{ banner.subtitle }}
                                             </p>
                                             <div class="owl-slide-animated owl-slide-cta"><a class="btn_1"
-                                                                                             href="{{ product.get_absolute_path }}"
+                                                                                             href="{{ banner.content_object.get_absolute_path }}"
                                                                                              role="button">Купить</a>
                                             </div>
                                         </div>
